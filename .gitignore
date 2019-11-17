@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/A2L.Net/v16
+/A2LEngine/.vs/A2LEngine/v16/Server/sqlite3
+/A2LEngine/bin/Debug/netstandard2.0
+/A2LEngine/obj
+/.vs
