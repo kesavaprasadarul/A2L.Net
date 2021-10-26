@@ -24,10 +24,10 @@ namespace A2LEngine
 
         public static string GetStringAfter(string source, string leftWord)
         {          
-            var strFilt = String.Format(@"(?<= {0})(.*?)(?=\n)", leftWord);
+            var strFilt = String.Format(@"(?<={0})(.*?)(?=\n)", leftWord);
             var matches = Regex.Match(source, strFilt,
                 RegexOptions.IgnoreCase | RegexOptions.Singleline);
-            return matches.Value;
+            return matches.Value.Trim();
 
         }
 
