@@ -58,7 +58,7 @@ namespace A2LEngine
             foreach (string measurementStr in Helpers.GetFirstInstanceTextBetween(data, M_ST_START, M_ST_END))
             {
                 Measurement measVar = new Measurement();
-                string[] strSplt = measurementStr.Split('\n');
+                string[] strSplt = measurementStr.Cleanup().Split('\n');
                 measVar.Name = strSplt[0].Trim();
                 measVar.Description = strSplt[1].Cleanup();
                 measVar.DataType = strSplt[2].Cleanup().ToEnum<DataType>();
@@ -87,7 +87,7 @@ namespace A2LEngine
             foreach (string calibrationStr in GetFirstInstanceTextBetween(data, C_ST_START, C_ST_END))
             {
                 Calibration calib = new Calibration();
-                string[] strSplt = calibrationStr.Split('\n');
+                string[] strSplt = calibrationStr.Cleanup().Split('\n');
                 calib.Name = strSplt[0].Cleanup();
                 calib.Description = strSplt[1].Cleanup();
                 calib.Type = strSplt[2].Cleanup().ToEnum<CalibrationType>();
@@ -147,7 +147,7 @@ namespace A2LEngine
             foreach(string compuMethodStr in GetFirstInstanceTextBetween(data, CM_ST_START, CM_ST_END))
             {
                 CompuMethod compMet = new CompuMethod();
-                string[] strSplt = compuMethodStr.Split('\n');
+                string[] strSplt = compuMethodStr.Cleanup().Split('\n');
                 compMet.Name = strSplt[0].Cleanup();
                 compMet.Description = strSplt[1].Cleanup();
                 compMet.Type = strSplt[2].Cleanup().ToEnum<CompuMethodType>();
@@ -172,7 +172,7 @@ namespace A2LEngine
             foreach (string compuMethodVTabStr in GetFirstInstanceTextBetween(data, CMV_ST_START, CMV_ST_END))
             {
                 CompuTable table = new CompuTable();
-                string[] strSplt = compuMethodVTabStr.Split('\n');
+                string[] strSplt = compuMethodVTabStr.Cleanup().Split('\n');
                 table.Name = strSplt[0].Cleanup();
                 table.Description = strSplt[1].Cleanup();
                 table.Type = strSplt[2].Cleanup().ToEnum<CompuMethodType>();
@@ -181,7 +181,7 @@ namespace A2LEngine
                 for (int i = 4; i < table.NumberOfPairs + 4; i++)
                 {
                     var cmptSplt = strSplt[i].Cleanup().Split(' ');
-                    table.Values.Add(int.Parse(cmptSplt[0].Cleanup()), cmptSplt[1].Cleanup());
+                    table.Values.Add(int.Parse(cmptSplt[0].Cleanup()), cmptSplt.Length == 1 ? "" : cmptSplt[1].Cleanup());
                 }
                 CompuMethodVTabs.Add(table);
                 CompuMethodVTabRef.Add(table.Name);
